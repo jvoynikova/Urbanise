@@ -20,6 +20,7 @@ const Edit = () => {
     const onSubmitHandler = (values) => {
         axios.put(`${process.env.API_URL}/api/properties/${id}`, { ...values })
             .then(res => {
+                dispatch(setNote({ msg: "Success!", type: noteTypes.success }));
                 navigate("/");
             })
             .catch((err) => {

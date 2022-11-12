@@ -4,6 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { getProperties, setNote } from "../../common/store";
 import { noteTypes } from "../../common/codes";
 
+const fields = [
+    "name", "plan", "city",
+    "region", "manager", "previousManager",
+    "managementCompany", "planRegistered",
+    "address", "account", "abn"
+];
+
 const Actions = (props) => {
     const { onSubmit } = props;
     const navigate = useNavigate();
@@ -15,13 +22,16 @@ const Actions = (props) => {
         // primitive example validation, more needed according to business logic
         // date validation, don't call if nothing changed, uniqe fields, input length, etc.
         const validate = [];
-        if(properties.filter(f => f.name === property.name && f.id != property.id).length) {
+        if (properties.filter(f => f.name === property.name && f.id != property.id).length) {
             validate.push('Name already esists!')
         };
-        if(properties.filter(f => f.plan === property.plan && f.id != property.id).length) {
+
+        if (properties.filter(f => f.plan === property.plan && f.id != property.id).length) {
             validate.push('Plan already esists!')
         };
-        if(Object.values(property).filter(f => !f).length) {
+
+        if (fields.some(f => !Object.keys(property).includes(f)) ||
+            Object.values(property).some(f => !f)) {
             validate.push('All fields are required!')
         }
 

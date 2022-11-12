@@ -9,6 +9,7 @@ import Fields from "./fields/Fields";
 const Create = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
     const onSubmitHandler = (values) => {
         axios.post(`${process.env.API_URL}/api/properties`, { ...values })
             .then(res => {
