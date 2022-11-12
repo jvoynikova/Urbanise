@@ -63,7 +63,7 @@ const Properties = () => {
             };
         } else {
             setBySearch(properties);
-            if (byRegion.length) {setRows(byRegion)};
+            setRows(byRegion);
         }
 
     }, [search])
@@ -77,7 +77,7 @@ const Properties = () => {
         }
         else {
             setByRegion(properties);
-            if (bySearch.length) {setRows(bySearch)};
+            setRows(bySearch);
         }
 
     }, [region])
@@ -102,7 +102,7 @@ const Properties = () => {
                 </div>
                 <div className="action">
                     <Regions
-                        options={regions.filter(f => bySearch.map(i => i.region).includes(f.id))}
+                        options={regions.filter(f => properties.map(i => i.region).includes(f.id))}
                         onChange={(v) => setRegion(v)} />
                 </div>
                 <div className="action" onClick={addNewHandler}><button>Add new</button></div>
